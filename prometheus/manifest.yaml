@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podtato-head
+spec:
+  selector:
+    matchLabels:
+      app: podtato-head
+  template:
+    metadata:
+      labels:
+        app: podtato-head
+    spec:
+      containers:
+      - name: server
+        image: artifacts.bcp.absa.co.za/eb-personal-lending-docker-local/podtato-head/podtatoserver:v0.1.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9000
+        env:
+        - name: PORT
+          value: "9000"
+      imagePullSecrets:
+        - name: bcp-artifacts-regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: podtato-head
+spec:
+  selector:
+    app: podtato-head
+  ports:
+  - name: http
+    port: 9000
+    protocol: TCP
+    targetPort: 9000

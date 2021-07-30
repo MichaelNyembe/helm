@@ -1,0 +1,14 @@
+replicaCount: 1
+  
+serviceAccount:
+  create: true
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+global:
+  branch: main
+  proxy: http://teraco-jhb.intra.absaafrica:8080
+  noProxy: 172.20.0.1,localhost,127.0.0.1
