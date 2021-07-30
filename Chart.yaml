@@ -1,0 +1,6 @@
+apiVersion: v2
+name: data-feeds
+description: An ArgoCD app-of-apps on our BKS cluster for the Data Feeds
+type: application
+version: 1.0.0
+appVersion: 1.0.0
